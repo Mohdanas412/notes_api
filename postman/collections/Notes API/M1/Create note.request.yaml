@@ -1,0 +1,12 @@
+$kind: http-request
+url: http://localhost:8080/api/notes
+method: POST
+body:
+  type: json
+  content: |2-
+       {
+         "title": "Learn Spring",
+         "content": "Understand dependency injection",
+         "pinned": false
+       }
+order: 2000

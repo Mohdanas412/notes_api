@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +23,13 @@ public class NoteController {
     @GetMapping
     public List<Note> getAllNotes() {
         return new ArrayList<>(notes.values());
+    }
+
+    @PostMapping
+    public Note createNote(@RequestBody Note note) {
+        note.setId(nextId);          // the server decides the id
+        nextId++;                    // prepare the next one
+        notes.put(note.getId(), note);   // store it, key = id
+        return note;                 // Jackson turns it into JSON
     }
 }
