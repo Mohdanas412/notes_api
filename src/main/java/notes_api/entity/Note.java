@@ -48,6 +48,5 @@ public class Note {
     public void setPinned(boolean pinned) {
         this.pinned = pinned;
     }
-
     
 }

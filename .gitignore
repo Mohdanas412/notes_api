@@ -31,6 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
-# Local secrets and environment files
+### Local secrets and environment files ###
 .env
 application-local.properties
+
+### Postman local view files ###
+   .postman/
+   postman/
