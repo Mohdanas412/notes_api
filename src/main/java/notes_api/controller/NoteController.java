@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +32,9 @@ public class NoteController {
         nextId++;                    // prepare the next one
         notes.put(note.getId(), note);   // store it, key = id
         return note;                 // Jackson turns it into JSON
+    }
+        @GetMapping("/{id}")
+    public Note getNoteById(@PathVariable Long id) {
+        return notes.get(id);   // null if the id doesn't exist
     }
 }
