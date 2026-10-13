@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,4 +39,21 @@ public class NoteController {
     public Note getNoteById(@PathVariable Long id) {
         return notes.get(id);   // null if the id doesn't exist
     }
+    @PutMapping("/{id}")
+    public Note updateNote(@PathVariable Long id, @RequestBody Note updated) {
+        Note existing = notes.get(id);
+        if (existing == null) {
+            return null;                       // Module 4 turns this into a 404
+        }
+        existing.setTitle(updated.getTitle());
+        existing.setContent(updated.getContent());
+        existing.setPinned(updated.isPinned());
+        return existing;                       // id is never touched
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteNote(@PathVariable Long id) {
+        notes.remove(id);
+    }
+
 }
